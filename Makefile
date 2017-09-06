@@ -3,9 +3,12 @@ CFLAGS = -O2 -DHAVE_openpty
 VERSION = 1.0.8
 
 TARGET = ttyrec ttyplay ttytime
+MAN.1 = ttyrec.1 ttyplay.1 ttytime.1
 
 DIST =	ttyrec.c ttyplay.c ttyrec.h io.c io.h ttytime.c\
-	README Makefile ttyrec.1 ttyplay.1 ttytime.1
+	README Makefile $(MAN.1)
+
+PREFIX = /usr/local
 
 all: $(TARGET)
 
@@ -30,5 +33,6 @@ dist:
 	tar zcf ttyrec-$(VERSION).tar.gz  ttyrec-$(VERSION)
 	rm -rf ttyrec-$(VERSION)
 
-install: $(TARGET)
-	cp $(TARGET) /usr/local/bin/
+install: $(TARGET) $(MAN.1)
+	install -D $(TARGET) $(PREFIX)/bin
+	install -D $(MAN.1) $(PREFIX)/share/man/man1
