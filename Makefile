@@ -7,6 +7,8 @@ TARGET = ttyrec ttyplay ttytime
 DIST =	ttyrec.c ttyplay.c ttyrec.h io.c io.h ttytime.c\
 	README Makefile ttyrec.1 ttyplay.1 ttytime.1
 
+PREFIX = /usr/local
+
 all: $(TARGET)
 
 ttyrec: ttyrec.o io.o
@@ -31,4 +33,4 @@ dist:
 	rm -rf ttyrec-$(VERSION)
 
 install: $(TARGET)
-	cp $(TARGET) /usr/local/bin/
+	install -D $(TARGET) $(PREFIX)/bin
