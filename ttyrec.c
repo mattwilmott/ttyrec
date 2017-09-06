@@ -205,7 +205,7 @@ doinput()
 void
 finish()
 {
-#if defined(SVR4)
+#if defined(SVR4) || defined(linux)
 	int status;
 #else /* !SVR4 */
 	union wait status;
